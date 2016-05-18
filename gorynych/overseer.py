@@ -10,22 +10,32 @@ import inspect
 
 class Overseer(object):
 
-    def __init__(self, config):
+    def __init__(self):
+        config = {}
+        with open('config.json') as config_file:
+            raw_config = config_file.read()
+            raw_config = raw_config.replace('<HOME>', os.environ['HOME'])
+            config = json.loads(raw_config)
         self.config = config
         self.scarabs = []
 
     def load_config(self, config):
         self.config = config
 
-    def load_folder(folder):
-        for (dirpath, dirnames, filenames) in os.walk():
+    def load_folder(self, folder):
+        for (dirpath, dirnames, filenames) in os.walk(folder):
             for filename in filenames:
+                if filename == '__init__.py':
+                    continue
                 full_path = dirpath + filename
                 filetype = filename.split('.')[-1]
                 if filetype == 'py':
                     # FIXME: bad code
-                    name = filename[-3]
-                    module = imp.load_module(name, *imp.find_module(name))
+                    name = filename[: -3]
+                    module = imp.load_module(
+                        name,
+                        *imp.find_module(name, [dirpath])
+                    )
                     raw_scarabs_classes_list = inspect.getmembers(
                         module,
                         lambda member: (
@@ -36,8 +46,12 @@ class Overseer(object):
                             inspect.isclass(member)
                         )
                     )
-                    with open(name + '.json') as scarab_config_file:
-                        scarab_config = json.loads(scarab_config_file.read())
+                    scarab_config = {}
+                    try:
+                        with open(dirpath + '/' + name + '.json') as scarab_config_file:
+                            scarab_config = json.loads(scarab_config_file.read())
+                    except FileNotFoundError:
+                        scarab_config = {}
                     for scarab in raw_scarabs_classes_list:
                         self.scarabs.append(scarab[1](**scarab_config))
                 # TODO: use imp.get_magic()
@@ -48,3 +62,9 @@ class Overseer(object):
         self.load_folder(self.config["default_scarabs_folder"])
         for folder in self.config["additional_scarabs_folders"]:
             self.load_folder(folder)
+
+
+if __name__ == '__main__':
+    overseer = Overseer()
+    overseer.load_scarabs()
+    print(overseer.scarabs)

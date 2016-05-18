@@ -1,5 +1,5 @@
 {
-    "default_scarabs_folder": "~/.gorynych/scarabs",
+    "default_scarabs_folder": "<HOME>/.gorynych/scarabs",
     "additional_scarabs_folders": [],
-    "default_output_folder": "~/.gorynych/output"
+    "default_output_folder": "<HOME>/.gorynych/output"
 }
