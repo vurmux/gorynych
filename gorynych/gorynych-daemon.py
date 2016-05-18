@@ -9,10 +9,9 @@ from gorynych import scheduler
 from gorynych import overseer
 
 
-# TODO: Change config place to default
-with open('./config.json') as config_file:
-    config = json.loads(config_file.read())
-    overseer.load_scarabs(config)
-    scheduler.init(config)
+ovsr = overseer.Overseer()
+ovsr.load_scarabs()
+sdlr = scheduler.Scheduler(ovsr)
+
 with daemon.DaemonContext():
-    scheduler.run()
+    sdlr.run()

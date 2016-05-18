@@ -17,7 +17,7 @@ class Overseer(object):
             raw_config = raw_config.replace('<HOME>', os.environ['HOME'])
             config = json.loads(raw_config)
         self.config = config
-        self.scarabs = []
+        self.scarabs = {}
 
     def load_config(self, config):
         self.config = config
@@ -53,7 +53,7 @@ class Overseer(object):
                     except FileNotFoundError:
                         scarab_config = {}
                     for scarab in raw_scarabs_classes_list:
-                        self.scarabs.append(scarab[1](**scarab_config))
+                        self.scarabs[scarab[0]] = scarab[1](**scarab_config)
                 # TODO: use imp.get_magic()
                 elif filetype == 'pyc':
                     pass
@@ -62,6 +62,15 @@ class Overseer(object):
         self.load_folder(self.config["default_scarabs_folder"])
         for folder in self.config["additional_scarabs_folders"]:
             self.load_folder(folder)
+
+    def get_scarabs(self):
+        return self.scarabs
+
+    def get_scarabs_names(self):
+        return set(self.scarabs.keys())
+
+    def run_scarab(self, scarab_name):
+        self.scarabs[scarab_name].run_default()
 
 
 if __name__ == '__main__':

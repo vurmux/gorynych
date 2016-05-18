@@ -75,6 +75,7 @@ class LegifranceCassationScarab(object):
 
     def __init__(self):
         self.uid = str(self.__hash__())
+        self.name = self.__name__
 
     def run(self, **parameters):
         """
