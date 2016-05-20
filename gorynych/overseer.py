@@ -6,6 +6,8 @@ import sys
 import json
 import imp
 import inspect
+import time
+import codecs
 
 
 class Overseer(object):
@@ -70,7 +72,19 @@ class Overseer(object):
         return set(self.scarabs.keys())
 
     def run_scarab(self, scarab_name):
-        self.scarabs[scarab_name].run_default()
+        current_time = time.gmtime()
+        result_filename = "{}_{}-{}-{}_{}-{}-{}GM".format(
+            scarab_name,
+            current_time.tm_year,
+            current_time.tm_mon,
+            current_time.tm_mday,
+            current_time.tm_hour,
+            current_time.tm_min,
+            current_time.tm_sec,
+        )
+        with codecs.open(self.config["default_output_folder"] + '/' + result_filename, mode='w', encoding='utf-8') as result_file:
+            for result in self.scarabs[scarab_name].run_default():
+                result_file.write(str(result))
 
 
 if __name__ == '__main__':

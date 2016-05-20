@@ -16,9 +16,11 @@ class Scheduler(object):
 
     def init_jobs(self):
         for scarab in self.overseer.get_scarabs_names():
-            self.scheduler.every().minute.do(lambda: self.overseer.run_scarab(scarab))
+            self.scheduler.every().minute.do(
+                lambda: self.overseer.run_scarab(scarab)
+            )
 
     def run(self):
         while True:
-            scheduler.run_pending()
+            self.scheduler.run_pending()
             time.sleep(1)
