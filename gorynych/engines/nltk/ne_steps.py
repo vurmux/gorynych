@@ -16,7 +16,12 @@ def get_raw_named_entities(ne_chunks):
     current_label = ''
     for chunk in ne_chunks:
         if type(chunk) == Tree:
-            current_chunk.append(" ".join([token for token, pos in chunk.leaves()]))
+            current_chunk.append(
+                " ".join([
+                    token
+                    for token, pos in chunk.leaves()
+                ])
+            )
             current_label = chunk.label()
         elif current_chunk:
             named_entity = (" ".join(current_chunk))
@@ -29,7 +34,7 @@ def get_raw_named_entities(ne_chunks):
         raw_named_entities
     )
     return result
-    
+
 
 def refine_named_entities(raw_named_entities):
     in_label, named_entities = raw_named_entities
@@ -52,7 +57,7 @@ def refine_named_entities(raw_named_entities):
 
 def __cut_entity_end(entity_string, end_string):
     length = len(end_string)
-    if entity_string[-1 * length: ] == end_string:
+    if entity_string[-1 * length:] == end_string:
         return entity_string[: -1 * length]
     else:
         return False

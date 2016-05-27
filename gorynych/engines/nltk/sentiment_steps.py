@@ -8,16 +8,16 @@ from nltk.tree import Tree
 POSITIVE_SET = set([
     line
     for line in nltk.data.load(
-            'corpora/opinion_lexicon/positive-words.txt',
-            'text').split('\n')
+        'corpora/opinion_lexicon/positive-words.txt',
+        'text').split('\n')
     if not line.startswith(';')
 ])
 
 NEGATIVE_SET = set([
     line
     for line in nltk.data.load(
-            'corpora/opinion_lexicon/negative-words.txt',
-            'text').split('\n')
+        'corpora/opinion_lexicon/negative-words.txt',
+        'text').split('\n')
     if not line.startswith(';')
 ])
 

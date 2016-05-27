@@ -19,4 +19,10 @@ def tagify(tokens):
 
 def tagged_sentence_split(tagged_tokens):
     # tagged_sentences_tokens
-    return [list(g) for k, g in groupby(tagged_tokens, lambda x: x != ('.', '.')) if k]
+    return [
+        list(g)
+        for k, g in groupby(
+            tagged_tokens,
+            lambda x: x != ('.', '.')
+        ) if k
+    ]

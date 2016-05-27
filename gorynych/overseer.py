@@ -31,34 +31,32 @@ class Overseer(object):
                     continue
                 full_path = dirpath + filename
                 filetype = filename.split('.')[-1]
-                if filetype == 'py':
-                    # FIXME: bad code
-                    name = filename[: -3]
-                    module = imp.load_module(
-                        name,
-                        *imp.find_module(name, [dirpath])
+                # FIXME: bad code
+                name = filename[: -3]
+                module = imp.load_module(
+                    name,
+                    *imp.find_module(name, [dirpath])
+                )
+                raw_scarabs_classes_list = inspect.getmembers(
+                    module,
+                    lambda member: (
+                        (
+                            hasattr(member, '__module__') and
+                            member.__module__ == name
+                        ) and
+                        inspect.isclass(member)
                     )
-                    raw_scarabs_classes_list = inspect.getmembers(
-                        module,
-                        lambda member: (
-                            (
-                                hasattr(member, '__module__') and
-                                member.__module__ == name
-                            ) and
-                            inspect.isclass(member)
-                        )
-                    )
+                )
+                scarab_config = {}
+                try:
+                    with open(
+                            '{}/{}.json'.format(dirpath, name)
+                    ) as scarab_config_file:
+                        scarab_config = json.loads(scarab_config_file.read())
+                except FileNotFoundError:
                     scarab_config = {}
-                    try:
-                        with open(dirpath + '/' + name + '.json') as scarab_config_file:
-                            scarab_config = json.loads(scarab_config_file.read())
-                    except FileNotFoundError:
-                        scarab_config = {}
-                    for scarab in raw_scarabs_classes_list:
-                        self.scarabs[scarab[0]] = scarab[1](**scarab_config)
-                # TODO: use imp.get_magic()
-                elif filetype == 'pyc':
-                    pass
+                for scarab in raw_scarabs_classes_list:
+                    self.scarabs[scarab[0]] = scarab[1](**scarab_config)
 
     def load_scarabs(self):
         self.load_folder(self.config["default_scarabs_folder"])
@@ -82,7 +80,11 @@ class Overseer(object):
             current_time.tm_min,
             current_time.tm_sec,
         )
-        with codecs.open(self.config["default_output_folder"] + '/' + result_filename, mode='w', encoding='utf-8') as result_file:
+        with codecs.open(
+                self.config["default_output_folder"] + '/' + result_filename
+                mode='w',
+                encoding='utf-8'
+        ) as result_file:
             for result in self.scarabs[scarab_name].run_default():
                 result_file.write(str(result))
 
