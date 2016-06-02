@@ -6,8 +6,8 @@ import os
 
 import daemon
 
-import scheduler
-import overseer
+from gorynych import scheduler
+from gorynych import overseer
 
 
 ovsr = overseer.Overseer()
@@ -20,4 +20,9 @@ sdlr = scheduler.Scheduler(ovsr)
 #}
 
 #with daemon.DaemonContext(**daemon_options):
-sdlr.run()
+
+def main():
+    sdlr.run()
+
+if __name__ == '__main__':
+    main()

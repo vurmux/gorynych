@@ -8,16 +8,15 @@ import imp
 import inspect
 import time
 import codecs
+from pkg_resources import resource_string
 
 
 class Overseer(object):
 
     def __init__(self):
-        config = {}
-        with open('config.json') as config_file:
-            raw_config = config_file.read()
-            raw_config = raw_config.replace('<HOME>', os.environ['HOME'])
-            config = json.loads(raw_config)
+        raw_config = resource_string(__name__, 'config.json')
+        raw_config = raw_config.decode('utf-8').replace('<HOME>', os.environ['HOME'])
+        config = json.loads(raw_config)
         self.config = config
         self.scarabs = {}
 
@@ -81,7 +80,7 @@ class Overseer(object):
             current_time.tm_sec,
         )
         with codecs.open(
-                self.config["default_output_folder"] + '/' + result_filename
+                self.config["default_output_folder"] + '/' + result_filename,
                 mode='w',
                 encoding='utf-8'
         ) as result_file:
