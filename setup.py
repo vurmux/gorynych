@@ -29,7 +29,7 @@ setup(
     ],
     keywords='scraping nlp',
     packages=find_packages(exclude=['docs', 'img']),
-    install_requires=['beautifulsoup4', 'requests', 'nltk', 'schedule'],
+    install_requires=['beautifulsoup4', 'requests', 'nltk'],
     extras_require={
         'dev': [],
         'test': ['coverage'],

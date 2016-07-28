@@ -10,8 +10,9 @@ class State(Enum):
     running = 3
     paused = 4
     aborted = 5
-    failed = 6
-    frozen = 7
+    completed = 6
+    failed = 7
+    frozen = 8
 
 
 class Task(object):
@@ -19,12 +20,17 @@ class Task(object):
     def __init__(self):
         self.state = State.inactive
         self.scarab = None
+        self.name = "default"
 
+    # TODO: Check current state and raise an exception if it is incorrect
     def activate(self):
         self.state = State.active
 
     def deactivate(self):
         self.state = State.inactive
+
+    def run(self):
+        self.state = State.running
 
     def pause(self):
         self.state = State.paused
