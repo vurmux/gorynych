@@ -3,7 +3,7 @@
 
 from setuptools import setup, find_packages
 from codecs import open
-from os import path
+from os import path, mkdir
 
 
 here = path.abspath(path.dirname(__file__))
@@ -43,3 +43,11 @@ setup(
         ],
     },
 )
+
+# Post-installation script
+gch_home_folder = path.join(
+    path.expanduser('~'),
+    'gorynych'
+)
+if not path.exists(gch_home_folder):
+    mkdir(gch_home_folder)
