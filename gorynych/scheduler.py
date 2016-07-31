@@ -14,8 +14,9 @@ class Scheduler(object):
         self.scheduler = sched.scheduler(time.time, time.sleep)
         self.__tasks = {}
 
-    def create_task(self, task):
-        self.__tasks[task.name] = task
+    def create_task(self, task_name):
+        self.__tasks[task.name] = task_name
+        self.__tasks[task.name].scheduler = self
 
     def run_task(self, task_name, priority=0):
         self.scheduler.enter(0, priority, lambda: self.__tasks[task_name].run())
@@ -24,7 +25,8 @@ class Scheduler(object):
             self.scheduler.run(blocking=False)
 
     def run_all(self):
-        pass
+        for task in self._tasks:
+            self.run_task(task)
 
     def launch(self):
         self.scheduler.run(blocking=False)

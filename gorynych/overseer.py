@@ -69,6 +69,7 @@ class Overseer(object):
         return set(self.scarabs.keys())
 
     def run_scarab(self, scarab_name):
+        # TODO: Add another types of information storing (memory etc.)
         current_time = time.gmtime()
         result_filename = "{}_{}-{}-{}_{}-{}-{}GM".format(
             scarab_name,

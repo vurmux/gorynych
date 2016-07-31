@@ -18,7 +18,7 @@ Gorynych automatically extracts only useful information from the scraped text.
 Dependencies
 ============
 
-Gorynych is tested to work under Python 3.4, but it should also work with Python 3.2-3.5.
+Gorynych is designed to work under Python >=3.4.
 
 The required dependencies for this package are:
 
