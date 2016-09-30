@@ -29,9 +29,11 @@ class Overseer(object):
                 if filename == '__init__.py':
                     continue
                 full_path = dirpath + filename
-                filetype = filename.split('.')[-1]
-                # FIXME: bad code
-                name = filename[: -3]
+                if filename.find('.') != -1:
+                    name, filetype = filename.rsplit('.', 1)
+                else:
+                    name = filename
+                    filetype = None
                 module = imp.load_module(
                     name,
                     *imp.find_module(name, [dirpath])
