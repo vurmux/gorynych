@@ -34,11 +34,13 @@ class Overseer(object):
                 else:
                     name = filename
                     filetype = None
+                if filetype != "py":
+                    continue
                 module = imp.load_module(
                     name,
                     *imp.find_module(name, [dirpath])
                 )
-                raw_scarabs_classes_list = inspect.getmembers(
+                raw_scarabs_classes = inspect.getmembers(
                     module,
                     lambda member: (
                         (
@@ -48,16 +50,8 @@ class Overseer(object):
                         inspect.isclass(member)
                     )
                 )
-                scarab_config = {}
-                try:
-                    with open(
-                            '{}/{}.json'.format(dirpath, name)
-                    ) as scarab_config_file:
-                        scarab_config = json.loads(scarab_config_file.read())
-                except FileNotFoundError:
-                    scarab_config = {}
-                for scarab in raw_scarabs_classes_list:
-                    self.scarabs[scarab[0]] = scarab[1](**scarab_config)
+                for scarab in raw_scarabs_classes:
+                    self.scarabs[scarab[0]] = scarab[1]()
 
     def load_scarabs(self):
         self.load_folder(self.config["default_scarabs_folder"])
