@@ -14,9 +14,13 @@ class Scheduler(object):
         self.scheduler = sched.scheduler(time.time, time.sleep)
         self.__tasks = {}
 
-    def create_task(self, task_name):
-        self.__tasks[task.name] = task_name
+    def create_task(self, task):
+        self.__tasks[task.name] = task
+        #TODO: Really? Looks like bad code!
         self.__tasks[task.name].scheduler = self
+
+    def delete_task(self, task_name):
+        pass
 
     def run_task(self, task_name, priority=0):
         self.scheduler.enter(0, priority, lambda: self.__tasks[task_name].run())
@@ -30,3 +34,39 @@ class Scheduler(object):
 
     def launch(self):
         self.scheduler.run(blocking=False)
+
+    @property
+    def tasks(self):
+        pass
+
+    @property
+    def inactive_tasks(self):
+        pass
+
+    @property
+    def active_tasks(self):
+        pass
+
+    @property
+    def running_tasks(self):
+        pass
+
+    @property
+    def paused_tasks(self):
+        pass
+
+    @property
+    def aborted_tasks(self):
+        pass
+
+    @property
+    def completed_tasks(self):
+        pass
+
+    @property
+    def failed_tasks(self):
+        pass
+
+    @property
+    def frozen_tasks(self):
+        pass

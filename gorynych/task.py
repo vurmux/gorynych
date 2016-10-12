@@ -19,43 +19,55 @@ class State(Enum):
 
 
 class Task(object):
- 
-    def __init__(self, name, scarab_name):
-        self.state = State.inactive
-        self.__scarab_name = scarab_name
+
+    def __init__(self, name, scarab, scarab_config):
+        self._state = State.inactive
+        self._scarab = scarab
+        self._scarab_config = scarab_config
         self.name = name
-        self.scheduler = None
+        self.priority = 0
+
+    @property
+    def scarab(self):
+        return self._scarab
+
+    @property
+    def scarab_config(self):
+        return self._scarab_config
+
+    @property
+    def state(self):
+        return self._state
 
     def activate(self):
-        assert self.state == State.inactive, STATE_ERROR
-        self.state = State.active
+        assert self._state == State.inactive, STATE_ERROR
+        self._state = State.active
 
     def deactivate(self):
-        assert self.state in [State.active, State.completed], STATE_ERROR
-        self.state = State.inactive
+        assert self._state in [State.active, State.completed], STATE_ERROR
+        self._state = State.inactive
 
     def run(self):
-        assert self.state in [State.active, State.completed], STATE_ERROR
-        self.state = State.running
-        self.scheduler.overseer.run_scarab(self.__scarab_name)
+        assert self._state in [State.active, State.completed], STATE_ERROR
+        self._state = State.running
+        self._scarab.run(self._scarab_config)
 
     def pause(self):
-        assert self.state == State.running, STATE_ERROR
-        self.state = State.paused
+        assert self._state == State.running, STATE_ERROR
+        self._state = State.paused
 
     def resume(self):
-        assert self.state == State.paused, STATE_ERROR
-        self.state = State.active
+        assert self._state == State.paused, STATE_ERROR
+        self._state = State.active
 
     def abort(self):
-        assert self.state == State.running, STATE_ERROR
-        self.state = State.aborted
+        assert self._state == State.running, STATE_ERROR
+        self._state = State.aborted
 
     def freeze(self):
-        assert self.state == State.inactive, STATE_ERROR
-        self.state = State.frozen
+        assert self._state == State.inactive, STATE_ERROR
+        self._state = State.frozen
 
     def defreeze(self):
-        assert self.state == State.frozen, STATE_ERROR
-        self.state = State.inactive
-
+        assert self._state == State.frozen, STATE_ERROR
+        self._state = State.inactive
