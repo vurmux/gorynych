@@ -4,8 +4,6 @@
 import time
 import sched
 
-from gorynych.task import Task
-
 
 class Scheduler(object):
 
@@ -16,7 +14,7 @@ class Scheduler(object):
 
     def create_task(self, task):
         self.__tasks[task.name] = task
-        #TODO: Really? Looks like bad code!
+        # TODO: Really? Looks like bad code!
         self.__tasks[task.name].scheduler = self
 
     def delete_task(self, task_name):
@@ -29,7 +27,7 @@ class Scheduler(object):
             self.scheduler.run(blocking=False)
 
     def run_all(self):
-        for task in self._tasks:
+        for task in self.__tasks:
             self.run_task(task)
 
     def launch(self):

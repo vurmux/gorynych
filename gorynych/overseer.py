@@ -2,7 +2,6 @@
 
 
 import os
-import sys
 import json
 from imp import load_module, find_module
 from inspect import getmembers, isclass
@@ -24,7 +23,7 @@ class Overseer(object):
     def scarabs(self):
         return self._scarabs
 
-    def get_scarab(scarab_name):
+    def get_scarab(self, scarab_name):
         if scarab_name in self._scarabs:
             return self._scarabs[scarab_name]
         return None
@@ -45,7 +44,7 @@ class Overseer(object):
                 )
                 if filename == '__init__.py':
                     continue
-                if filetype != "py":
+                if filetype != 'py':
                     continue
                 module = load_module(name, *find_module(name, [dirpath]))
                 raw_scarabs_classes = getmembers(
@@ -59,14 +58,14 @@ class Overseer(object):
                     self._scarabs[scarab[0]] = scarab[1]()
 
     def load_scarabs(self):
-        self.load_folder(self.config["default_scarabs_folder"])
-        for folder in self.config["additional_scarabs_folders"]:
+        self.load_folder(self.config['default_scarabs_folder'])
+        for folder in self.config['additional_scarabs_folders']:
             self.load_folder(folder)
 
     def run_scarab(self, scarab_name):
         # TODO: Add another types of information storing (memory etc.)
         current_time = time.gmtime()
-        filename = "{}_{}-{}-{}_{}-{}-{}GM".format(
+        filename = '{}_{}-{}-{}_{}-{}-{}GM'.format(
             scarab_name,
             current_time.tm_year,
             current_time.tm_mon,
@@ -75,7 +74,7 @@ class Overseer(object):
             current_time.tm_min,
             current_time.tm_sec,
         )
-        filepath = self.config["default_output_folder"] + '/' + filename
+        filepath = self.config['default_output_folder'] + '/' + filename
         with codecs.open(filepath, mode='w', encoding='utf-8') as result_file:
             for result in self._scarabs[scarab_name].run_default():
                 result_file.write(str(result))
