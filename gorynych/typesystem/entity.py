@@ -3,6 +3,9 @@ from datetime import datetime
 
 class Entity(object):
     """Basic class for all node objects"""
+
+    TYPE = "Entity"
+
     def __init__(self, attributes={}, tags=set([])):
         super(Entity, self).__init__()
         self.uuid = uuid.uuid4()
@@ -28,6 +31,15 @@ class Entity(object):
 
     def add_tag(self, tag):
         self.tags.add(tag)
+
+    def get_attribute(self, attr_name):
+        return self.attributes[attr_name]
+
+    def get_attr(self, attr_name):
+        """
+        Short alias for self.get_attribute()
+        """
+        return self.get_attribute(attr_name)
 
     def get_attributes(self):
         return self.attributes

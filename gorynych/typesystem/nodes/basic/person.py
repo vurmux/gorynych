@@ -1,6 +1,9 @@
 from .agent import Agent
 
 class Person(Agent):
+
+    TYPE = "Person"
+
     """docstring for Person"""
     def __init__(self, attributes={}, tags=set([])):
         super(Person, self).__init__(attributes, tags)
