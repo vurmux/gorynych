@@ -1,6 +1,3 @@
-import uuid
-from datetime import datetime
-
 from .entity import Entity
 
 class Edge(Entity):

@@ -2,7 +2,7 @@ import networkx as nx
 
 class Ontology(object):
     """Class for ontology"""
-    def __init__(self, node_types, edge_types, relations):
+    def __init__(self, node_types=[], edge_types=[], relations=[]):
         self.node_types = {
             elem.TYPE: elem
             for elem in node_types
