@@ -27,9 +27,9 @@ setup(
         'License :: OSI Approved :: Apache Software License',
         'Programming Language :: Python :: 3 :: Only',
     ],
-    keywords='scraping nlp',
+    keywords='scraping osint',
     packages=find_packages(exclude=['docs', 'img']),
-    install_requires=['beautifulsoup4', 'requests', 'nltk'],
+    install_requires=['networkx'],
     extras_require={
         'dev': [],
         'test': ['coverage'],
