@@ -25,6 +25,7 @@ GORYNYCH_ONTOLOGY = Ontology(
         location.Location,
         organization.Organization,
         person.Person,
+        document.Document,
         # Advanced types
         account.Account,
         email.Email,
