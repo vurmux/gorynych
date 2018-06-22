@@ -68,3 +68,39 @@ class Entity(object):
     def set_attributes(self, **attributes):
         for attr in attributes:
             self.set_attribute(attr, attributes[attr])
+
+    def fuse(self, other, conflict="rename_other"):
+        """
+        Fuse another entity to current entity
+        """
+
+        # TODO: Fuse zope interfaces (after they will be implemented)
+
+        # TODO: Change the class of the current entity if
+        #       the other entity is the subtype of the current
+        if not (self.meta.hierarchy.startswith(other.meta.hierarchy) or
+                other.meta.hierarchy.startswith(self.meta.hierarchy)):
+            raise Exception("Cannot fuse nodes: they are not in subclass-superclass relations")
+
+        current_attrs = set(self.attrs.keys())
+        other_attrs = set(other.attrs.keys())
+
+        conflict_attrs = current_attrs & other_attrs
+        for attr in conflict_attrs:
+            if self.attrs[attr] != other.attrs[attr]:
+                now = str(int(datetime.timestamp(datetime.now())))
+                if conflict == 'keep_self':
+                    pass
+                elif conflict == 'keep_other':
+                    self.attrs[attr] = other.attrs[attr]
+                elif conflict == 'rename_self':
+                    self.attrs[attr+'_'+now] = self.attrs[attr]
+                    self.attrs[attr] = other.attrs[attr]
+                elif conflict == 'rename_other':
+                    self.attrs[attr+'_'+now] = other.attrs[attr]
+                else:
+                    raise AttributeError("Incorrect conflict value")
+
+        attrs_to_add = other_attrs - current_attrs
+        for attr in attrs_to_add:
+            self.attrs[attr] = other.attrs[attr]
