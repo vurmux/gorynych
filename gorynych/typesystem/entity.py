@@ -2,9 +2,13 @@ import uuid
 from datetime import datetime
 
 class Entity(object):
-    """Basic class for all node objects"""
+    """Basic class for all entity objects"""
 
-    TYPE = "Entity"
+    meta = {
+        "ontology": "gch",
+        "typename": "Entity"
+        "hierarchy": "gch/Entity"
+    }
 
     def __init__(self, attributes={}, tags=set([])):
         super(Entity, self).__init__()

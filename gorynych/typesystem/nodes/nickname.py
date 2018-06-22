@@ -3,7 +3,11 @@ from .basic.data import Data
 class Nickname(Data):
     """docstring for Nickname"""
 
-    TYPE = "Nickname"
+    meta = {
+        "ontology": "gch",
+        "typename": "Nickname"
+        "hierarchy": "gch/Entity.Node.Data.Nickname"
+    }
 
     def __init__(self, attributes={}, tags=set([])):
         super(Nickname, self).__init__(attributes, tags)

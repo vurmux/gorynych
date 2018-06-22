@@ -3,7 +3,11 @@ from ...edge import Edge
 class Connection(Edge):
     """Connection link"""
 
-    TYPE = "Connection"
+    meta = {
+        "ontology": "gch",
+        "typename": "Connection"
+        "hierarchy": "gch/Entity.Edge.Connection"
+    }
 
     def __init__(self, attributes={}, tags=set([])):
         super(Connection, self).__init__(attributes, tags)

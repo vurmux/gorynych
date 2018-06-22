@@ -3,7 +3,11 @@ from .basic.data import Data
 class Account(Data):
     """docstring for Account"""
 
-    TYPE = "Account"
+    meta = {
+        "ontology": "gch",
+        "typename": "Account"
+        "hierarchy": "gch/Entity.Node.Data.Account"
+    }
 
     def __init__(self, attributes={}, tags=set([])):
         super(Account, self).__init__(attributes, tags)

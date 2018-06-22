@@ -1,10 +1,14 @@
 from .event import Event
 
 class InstantEvent(Event):
-
-    TYPE = "Instant event"
-
     """docstring for Instant event"""
+
+    meta = {
+        "ontology": "gch",
+        "typename": "Instant event"
+        "hierarchy": "gch/Entity.Node.Event.InstantEvent"
+    }
+
     def __init__(self, name):
         super(InstantEvent, self).__init__(name)
         self.add_attributes(
