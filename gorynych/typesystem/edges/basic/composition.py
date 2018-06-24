@@ -5,7 +5,7 @@ class Composition(Edge):
 
     meta = {
         "ontology": "gch",
-        "typename": "Composition"
+        "typename": "Composition",
         "hierarchy": "gch/Entity.Edge.Composition"
     }
 

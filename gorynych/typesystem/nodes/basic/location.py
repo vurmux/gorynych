@@ -5,7 +5,7 @@ class Location(Node):
 
     meta = {
         "ontology": "gch",
-        "typename": "Location"
+        "typename": "Location",
         "hierarchy": "gch:Entity.Node.Location"
     }
 

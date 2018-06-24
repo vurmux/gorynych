@@ -5,7 +5,7 @@ class Document(Data):
 
     meta = {
         "ontology": "gch",
-        "typename": "Document"
+        "typename": "Document",
         "hierarchy": "gch/Entity.Node.Data.Document"
     }
 

@@ -5,7 +5,7 @@ class Event(Node):
 
     meta = {
         "ontology": "gch",
-        "typename": "Event"
+        "typename": "Event",
         "hierarchy": "gch/Entity.Node.Event"
     }
 

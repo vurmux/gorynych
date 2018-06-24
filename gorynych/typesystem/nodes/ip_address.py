@@ -5,7 +5,7 @@ class IPAddress(Data):
 
     meta = {
         "ontology": "gch",
-        "typename": "IP Address"
+        "typename": "IP Address",
         "hierarchy": "gch/Entity.Node.Data.IPAddress"
     }
 

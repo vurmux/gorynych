@@ -8,7 +8,7 @@ class Node(Entity):
 
     meta = {
         "ontology": "gch",
-        "typename": "Node"
+        "typename": "Node",
         "hierarchy": "gch/Entity.Node"
     }
 

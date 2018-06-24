@@ -5,7 +5,7 @@ class Organization(Group):
 
     meta = {
         "ontology": "gch",
-        "typename": "Organization"
+        "typename": "Organization",
         "hierarchy": "gch/Entity.Node.Group.Organization"
     }
 

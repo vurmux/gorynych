@@ -5,7 +5,7 @@ class Aggregation(Edge):
 
     meta = {
         "ontology": "gch",
-        "typename": "Aggregation"
+        "typename": "Aggregation",
         "hierarchy": "gch/Entity.Edge.Aggregation"
     }
 

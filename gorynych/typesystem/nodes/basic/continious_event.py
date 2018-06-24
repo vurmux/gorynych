@@ -5,7 +5,7 @@ class ContiniousEvent(Event):
 
     meta = {
         "ontology": "gch",
-        "typename": "Continious event"
+        "typename": "Continious event",
         "hierarchy": "gch/Entity.Node.Event.ContiniousEvent"
     }
 

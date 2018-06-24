@@ -5,7 +5,7 @@ class Email(Data):
 
     meta = {
         "ontology": "gch",
-        "typename": "Email"
+        "typename": "Email",
         "hierarchy": "gch/Entity.Node.Data.Email"
     }
 

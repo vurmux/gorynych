@@ -5,7 +5,7 @@ class Person(Agent):
 
     meta = {
         "ontology": "gch",
-        "typename": "Person"
+        "typename": "Person",
         "hierarchy": "gch/Entity.Node.Agent.Person"
     }
 

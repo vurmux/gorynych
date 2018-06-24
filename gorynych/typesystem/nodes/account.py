@@ -5,7 +5,7 @@ class Account(Data):
 
     meta = {
         "ontology": "gch",
-        "typename": "Account"
+        "typename": "Account",
         "hierarchy": "gch/Entity.Node.Data.Account"
     }
 

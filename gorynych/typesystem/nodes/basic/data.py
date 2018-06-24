@@ -5,7 +5,7 @@ class Data(Node):
 
     meta = {
         "ontology": "gch",
-        "typename": "Data"
+        "typename": "Data",
         "hierarchy": "gch/Entity.Node.Data"
     }
 

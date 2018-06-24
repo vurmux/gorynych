@@ -5,7 +5,7 @@ class Infrastructure(Node):
 
     meta = {
         "ontology": "gch",
-        "typename": "Infrastructure"
+        "typename": "Infrastructure",
         "hierarchy": "gch/Entity.Node.Infrastructure"
     }
 

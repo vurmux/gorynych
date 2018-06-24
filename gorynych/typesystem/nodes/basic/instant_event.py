@@ -5,7 +5,7 @@ class InstantEvent(Event):
 
     meta = {
         "ontology": "gch",
-        "typename": "Instant event"
+        "typename": "Instant event",
         "hierarchy": "gch/Entity.Node.Event.InstantEvent"
     }
 

@@ -5,7 +5,7 @@ class Group(Node):
 
     meta = {
         "ontology": "gch",
-        "typename": "Group"
+        "typename": "Group",
         "hierarchy": "gch/Entity.Node.Group"
     }
 

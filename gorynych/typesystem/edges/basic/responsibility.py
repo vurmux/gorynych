@@ -5,7 +5,7 @@ class Responsibility(Edge):
 
     meta = {
         "ontology": "gch",
-        "typename": "Responsibility"
+        "typename": "Responsibility",
         "hierarchy": "gch/Entity.Edge.Responsibility"
     }
 

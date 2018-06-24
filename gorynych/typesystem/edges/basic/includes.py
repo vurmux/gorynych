@@ -5,7 +5,7 @@ class Includes(Edge):
 
     meta = {
         "ontology": "gch",
-        "typename": "Includes"
+        "typename": "Includes",
         "hierarchy": "gch/Entity.Edge.Includes"
     }
 

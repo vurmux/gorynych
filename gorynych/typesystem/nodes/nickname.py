@@ -5,7 +5,7 @@ class Nickname(Data):
 
     meta = {
         "ontology": "gch",
-        "typename": "Nickname"
+        "typename": "Nickname",
         "hierarchy": "gch/Entity.Node.Data.Nickname"
     }
 

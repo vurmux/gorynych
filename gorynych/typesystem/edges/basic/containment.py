@@ -5,7 +5,7 @@ class Containment(Edge):
 
     meta = {
         "ontology": "gch",
-        "typename": "Containment"
+        "typename": "Containment",
         "hierarchy": "gch/Entity.Edge.Containment"
     }
 

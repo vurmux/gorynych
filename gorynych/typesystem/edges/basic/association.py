@@ -5,7 +5,7 @@ class Association(Edge):
 
     meta = {
         "ontology": "gch",
-        "typename": "Association"
+        "typename": "Association",
         "hierarchy": "gch/Entity.Edge.Association"
     }
 

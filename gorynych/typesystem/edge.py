@@ -5,7 +5,7 @@ class Edge(Entity):
 
     meta = {
         "ontology": "gch",
-        "typename": "Edge"
+        "typename": "Edge",
         "hierarchy": "gch/Entity.Edge"
     }
 

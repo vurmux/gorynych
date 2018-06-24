@@ -6,7 +6,7 @@ class Entity(object):
 
     meta = {
         "ontology": "gch",
-        "typename": "Entity"
+        "typename": "Entity",
         "hierarchy": "gch/Entity"
     }
 
@@ -78,29 +78,29 @@ class Entity(object):
 
         # TODO: Change the class of the current entity if
         #       the other entity is the subtype of the current
-        if not (self.meta.hierarchy.startswith(other.meta.hierarchy) or
-                other.meta.hierarchy.startswith(self.meta.hierarchy)):
+        if not (self.meta['hierarchy'].startswith(other.meta['hierarchy']) or
+                other.meta['hierarchy'].startswith(self.meta['hierarchy'])):
             raise Exception("Cannot fuse nodes: they are not in subclass-superclass relations")
 
-        current_attrs = set(self.attrs.keys())
-        other_attrs = set(other.attrs.keys())
+        current_attrs = set(self.attributes.keys())
+        other_attrs = set(other.attributes.keys())
 
         conflict_attrs = current_attrs & other_attrs
         for attr in conflict_attrs:
-            if self.attrs[attr] != other.attrs[attr]:
+            if self.attributes[attr] != other.attributes[attr]:
                 now = str(int(datetime.timestamp(datetime.now())))
                 if conflict == 'keep_self':
                     pass
                 elif conflict == 'keep_other':
-                    self.attrs[attr] = other.attrs[attr]
+                    self.attributes[attr] = other.attributes[attr]
                 elif conflict == 'rename_self':
-                    self.attrs[attr+'_'+now] = self.attrs[attr]
-                    self.attrs[attr] = other.attrs[attr]
+                    self.attributes[attr+'_'+now] = self.attributes[attr]
+                    self.attributes[attr] = other.attributes[attr]
                 elif conflict == 'rename_other':
-                    self.attrs[attr+'_'+now] = other.attrs[attr]
+                    self.attributes[attr+'_'+now] = other.attributes[attr]
                 else:
                     raise AttributeError("Incorrect conflict value")
 
         attrs_to_add = other_attrs - current_attrs
         for attr in attrs_to_add:
-            self.attrs[attr] = other.attrs[attr]
+            self.attributes[attr] = other.attributes[attr]

@@ -5,7 +5,7 @@ class Ownership(Edge):
 
     meta = {
         "ontology": "gch",
-        "typename": "Ownership"
+        "typename": "Ownership",
         "hierarchy": "gch/Entity.Edge.Ownership"
     }
 
