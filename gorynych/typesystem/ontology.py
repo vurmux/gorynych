@@ -13,9 +13,9 @@ class Ontology(object):
         }
         self.relations = relations
 
-    def check_graph_fit(self, G, ignore=False):
+    def check_graph_fit(self, graph, ignore=False):
         # Check an existense of all node types in ontology
-        for node in G.nodes:
+        for node in graph.nodes:
             if node.TYPE not in self.node_types and ignore == False:
                 raise ValueError("Node type is not found in the current ontology: {}".format(
                     node.TYPE

@@ -69,6 +69,9 @@ class Entity(object):
         for attr in attributes:
             self.set_attribute(attr, attributes[attr])
 
+    def can_fuse(self, other):
+        pass
+
     def fuse(self, other, conflict="rename_other"):
         """
         Fuse another entity to current entity
