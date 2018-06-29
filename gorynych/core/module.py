@@ -39,10 +39,7 @@ class Module(metaclass=ABCMeta):
         self._api_keys = {}
 
         # Module working directory
-        self._working_directory = None
-
-        # Current extracted graph
-        self._current_graph = None
+        self._working_directory = '.'
 
         # Load configuration info from the config.json if the module's
         # supertype is `folder`
@@ -58,7 +55,8 @@ class Module(metaclass=ABCMeta):
         pass
 
     def _dump(self, filename):
-        pickle.dump(self, os.path.join(self._working_directory, filename))
+        with open(os.path.join(self._working_directory, filename), 'wb') as f:
+            pickle.dump(self, f)
 
     def _get_required_keys(self):
         pass
@@ -67,14 +65,29 @@ class Module(metaclass=ABCMeta):
         return self.meta
 
     def freeze(self):
+        # TODO: Delete old dump files in folder
         filename = "dump-{}.tmp".format(
-            datetime.strftime(datetime.utcnow(), "%Y%m%d%H%M%S")
+            datetime.strftime(datetime.utcnow(), "%Y%m%dT%H%M%S")
         )
         self._dump(filename)
 
     def restore(self, file):
         pass
 
+    def setup(self, *args, **kwargs):
+        pass
+
     @abstractmethod
-    def run(*args, **kwargs):
+    def run(self, *args, **kwargs):
+        pass
+
+    @abstractmethod
+    def _update_step_state(self):
+        pass
+
+    @abstractmethod
+    def step(self):
+        pass
+
+    def finish(self, *args, **kwargs):
         pass
