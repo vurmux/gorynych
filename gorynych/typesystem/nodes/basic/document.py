@@ -9,5 +9,5 @@ class Document(Data):
         "hierarchy": "gch/Entity.Node.Data.Document"
     }
 
-    def __init__(self, name):
-        super(Document, self).__init__(name)
+    def __init__(self, attributes={}, tags=set([])):
+        super(Document, self).__init__(attributes, tags)

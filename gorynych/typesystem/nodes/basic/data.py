@@ -9,5 +9,5 @@ class Data(Node):
         "hierarchy": "gch/Entity.Node.Data"
     }
 
-    def __init__(self, name):
-        super(Data, self).__init__(name)
+    def __init__(self, attributes={}, tags=set([])):
+        super(Data, self).__init__(attributes, tags)

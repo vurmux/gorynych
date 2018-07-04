@@ -4,11 +4,11 @@ class Ontology(object):
     """Class for ontology"""
     def __init__(self, node_types=[], edge_types=[], relations=[]):
         self.node_types = {
-            elem.TYPE: elem
+            elem.meta['typename']: elem
             for elem in node_types
         }
         self.edge_types = {
-            elem.TYPE: elem
+            elem.meta['typename']: elem
             for elem in edge_types
         }
         self.relations = relations
@@ -16,9 +16,9 @@ class Ontology(object):
     def check_graph_fit(self, graph, ignore=False):
         # Check an existense of all node types in ontology
         for node in graph.nodes:
-            if node.TYPE not in self.node_types and ignore == False:
+            if node.meta['typename'] not in self.node_types and ignore == False:
                 raise ValueError("Node type is not found in the current ontology: {}".format(
-                    node.TYPE
+                    node.meta['typename']
                 ))
         return True
 

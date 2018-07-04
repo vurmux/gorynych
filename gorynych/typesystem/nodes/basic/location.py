@@ -9,5 +9,5 @@ class Location(Node):
         "hierarchy": "gch:Entity.Node.Location"
     }
 
-    def __init__(self, name):
-        super(Location, self).__init__(name)
+    def __init__(self, attributes={}, tags=set([])):
+        super(Location, self).__init__(attributes, tags)

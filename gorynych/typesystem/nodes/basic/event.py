@@ -9,5 +9,5 @@ class Event(Node):
         "hierarchy": "gch/Entity.Node.Event"
     }
 
-    def __init__(self, name):
-        super(Event, self).__init__(name)
+    def __init__(self, attributes={}, tags=set([])):
+        super(Event, self).__init__(attributes, tags)

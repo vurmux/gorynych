@@ -8,5 +8,6 @@ __all__ = [
     "instant_event",
     "location",
     "organization",
-    "person"
+    "person",
+    "document"
 ]

@@ -9,5 +9,5 @@ class Infrastructure(Node):
         "hierarchy": "gch/Entity.Node.Infrastructure"
     }
 
-    def __init__(self, name):
-        super(Infrastructure, self).__init__(name)
+    def __init__(self, attributes={}, tags=set([])):
+        super(Infrastructure, self).__init__(attributes, tags)

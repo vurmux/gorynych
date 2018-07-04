@@ -40,3 +40,6 @@ def test_ontology():
 
     print(G)
     print(G.node_types)
+
+    email = G.node_types['Email']()
+    print(email)

@@ -9,8 +9,8 @@ class ContiniousEvent(Event):
         "hierarchy": "gch/Entity.Node.Event.ContiniousEvent"
     }
 
-    def __init__(self, name):
-        super(ContiniousEvent, self).__init__(name)
+    def __init__(self, attributes={}, tags=set([])):
+        super(ContiniousEvent, self).__init__(attributes, tags)
         self.add_attributes(
             "start_timestamp",
             "end_timestamp"
