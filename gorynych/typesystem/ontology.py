@@ -2,6 +2,15 @@ import networkx as nx
 
 class Ontology(object):
     """Class for ontology"""
+
+    meta = {
+        "name": "",
+        "author": '"",
+        "short_description": "",
+        "long_description": "",
+        "tags": []
+    }
+
     def __init__(self, node_types=[], edge_types=[], relations=[]):
         self.node_types = {
             elem.meta['typename']: elem
@@ -22,8 +31,17 @@ class Ontology(object):
                 ))
         return True
 
-    def fit_graph(self, G):
-        pass
+    def get_node_type(self, typename):
+        if typename in self.node_types:
+            return self.node_types[typename]
+        else:
+            raise ValueError("Ontology has no node type: {}".format(typename))
+
+    def get_edge_type(self, typename):
+        if typename in self.edge_types:
+            return self.edge_types[typename]
+        else:
+            raise ValueError("Ontology has no edge type: {}".format(typename))
 
     def _validate_self(self):
         pass

@@ -7,6 +7,7 @@ import re
 import os.path
 from datetime import datetime
 import json
+import uuid
 
 from .constants import *
 
@@ -31,6 +32,9 @@ class Module(metaclass=ABCMeta):
     options = {}
 
     def __init__(self):
+        self.uuid = uuid.uuid4()
+        self.short_id = str(self.uuid)[:8]
+
         # Module state: used for the saving/restoring the module.
         # All temporary info should be stored here.
         self._state = {}

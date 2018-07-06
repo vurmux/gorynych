@@ -13,6 +13,7 @@ class Entity(object):
     def __init__(self, attributes={}, tags=set([])):
         super(Entity, self).__init__()
         self.uuid = uuid.uuid4()
+        self.short_id = str(self.uuid)[:8]
         self.attributes = {
             "name": "",
             "label": "",

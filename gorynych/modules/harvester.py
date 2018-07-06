@@ -18,8 +18,10 @@ class Harvester(Module):
 
     options = {}
 
-    def __init__(self):
+    def __init__(self, ontology):
         super(Harvester, self).__init__()
+
+        self._ontology = ontology
 
         # Extracted graph
         self.extracted_graph = None
