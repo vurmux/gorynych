@@ -1,4 +1,4 @@
-from ...node import Node
+from gorynych.core.node import Node
 
 class Group(Node):
     """docstring for Group"""

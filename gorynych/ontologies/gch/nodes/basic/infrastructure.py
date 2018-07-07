@@ -1,4 +1,4 @@
-from ...node import Node
+from gorynych.core.node import Node
 
 class Infrastructure(Node):
     """docstring for Infrastructure"""

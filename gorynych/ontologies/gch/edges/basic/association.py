@@ -1,4 +1,4 @@
-from ...edge import Edge
+from gorynych.core.edge import Edge
 
 class Association(Edge):
     """Association link"""

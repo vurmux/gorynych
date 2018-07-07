@@ -1,11 +1,11 @@
-from .ontology import Ontology
-from .node import Node
-from .edge import Edge
+from gorynych.core.ontology import Ontology
+from gorynych.core.node import Node
+from gorynych.core.edge import Edge
+from gorynych.core.relation import Relation as R
 from .nodes import *
 from .nodes.basic import *
 from .edges import *
 from .edges.basic import *
-from .relation import Relation as R
 from .enums.directions import DirectionsEnum
 
 DIRECT = DirectionsEnum.direct

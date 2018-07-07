@@ -5,7 +5,7 @@ class Ontology(object):
 
     meta = {
         "name": "",
-        "author": '"",
+        "author": "",
         "short_description": "",
         "long_description": "",
         "tags": []

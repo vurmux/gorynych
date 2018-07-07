@@ -5,12 +5,12 @@ import networkx as nx
 
 import gorynych
 
-import gorynych.typesystem.nodes.basic.agent as agent
-import gorynych.typesystem.nodes.basic.person as person
-import gorynych.typesystem.edge as edge
-import gorynych.typesystem.ontology as ontology
+import gorynych.ontologies.gch.nodes.basic.agent as agent
+import gorynych.ontologies.gch.nodes.basic.person as person
+import gorynych.core.edge as edge
+import gorynych.core.ontology as ontology
 
-import gorynych.typesystem.gorynych_ontology
+import gorynych.ontologies.gch.gch
 
 
 def test_ontology():
@@ -36,7 +36,7 @@ def test_ontology():
     except ValueError as e:
         print(e)
 
-    G = gorynych.typesystem.gorynych_ontology.GORYNYCH_ONTOLOGY
+    G = gorynych.ontologies.gch.gch.GORYNYCH_ONTOLOGY
 
     print(G)
     print(G.node_types)
